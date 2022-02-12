@@ -14,11 +14,12 @@ def main():
         perceptron = Perceptron(size=size, i=i, h=H)
         layers.append(perceptron)
 
-    for number in data:
+    for number in range(len(data)):
         print(f'Number: {number} in train data')
+        target = reader.get_target_data(number=number)
         for i in range(10):
             perceptron = layers[i]
-            perceptron.train(data=data[number], epochs=1000, nu=NU)
+            perceptron.train(data=data[number], target=target, epochs=1000, nu=NU)
             print(f'Perceptron: {i}, {perceptron.predict(data[number])}')
 
     print('THE END OF TRAINING\n')

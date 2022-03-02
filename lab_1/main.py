@@ -1,8 +1,10 @@
+from matplotlib import pyplot as plt
+
 from perceptron import Perceptron
 from utils.reader import Reader
 
 NU = 000.1
-H = 0.7
+H = 0.7  # learning_rate - это скорость обучения
 
 
 def main():
@@ -19,7 +21,7 @@ def main():
         target = reader.get_target_data(number=number)
         for i in range(10):
             perceptron = layers[i]
-            perceptron.train(data=data[number], target=target, epochs=1000, nu=NU)
+            perceptron.train(data=data[number], target=target, epochs=30, nu=NU)
             print(f'Perceptron: {i}, {perceptron.predict(data[number])}')
 
     print('THE END OF TRAINING\n')

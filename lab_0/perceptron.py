@@ -1,8 +1,6 @@
 from typing import List
 
-import matplotlib.pyplot as plt
 import numpy as np
-from openpyxl import load_workbook
 
 
 class Perceptron:
@@ -47,12 +45,3 @@ class Perceptron:
     def __normalize_weights(self, data: List[float],  nu: float, error: float) -> None:
         for i in range(len(self.weights)):
             self.weights[i] += error * nu * data[i]
-
-    @staticmethod
-    def __get_target_data(number: int) -> List[float]:
-        table = load_workbook('number_target.xlsx')
-        target = []
-        for i in range(10):
-            target.append(table.get_sheet_by_name(str(1)).cell(row=i + 1, column=number + 1).value)
-        return target
-

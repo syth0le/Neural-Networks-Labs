@@ -20,7 +20,7 @@ class DataReader:
             raise AttributeError
         self.train_data = []
 
-    def get_data(self) -> List[TrainData]:
+    def get_train_data(self) -> List[TrainData]:
         with open(self.file) as f:
             self.train_data = json.load(f)
 
@@ -31,3 +31,7 @@ class DataReader:
                 target = 1
             result_list.append(TrainData(target=target, number=int(item), data=self.train_data[item]))
         return result_list
+
+    def get_test_data(self) -> List[TrainData]:
+        pass  # TODO
+

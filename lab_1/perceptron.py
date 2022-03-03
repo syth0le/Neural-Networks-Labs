@@ -28,14 +28,8 @@ class Perceptron:
     def _get_weights(size: int) -> np.array:
         return np.random.uniform(-1, 1, size)
 
-    # @staticmethod
     def __get_activation_function(self, sum_local: float) -> float:
         return 1 if sum_local > self.h else 0
-        # if sum_local > 1:
-        #     return 1
-        # if sum_local < 0:
-        #     return 0
-        # return sum_local
 
     def __get_sum_for_weight(self, data: List[float]) -> float:
         net_y = 0

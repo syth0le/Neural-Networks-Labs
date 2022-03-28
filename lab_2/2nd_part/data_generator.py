@@ -15,8 +15,8 @@ class DataGenerator:
         self.__data_file = 'data/data.json'
         self.__train_file = 'data/train_data.json'
         self.__test_file = 'data/test_data.json'
-        self.train_data = train_data
-        self.test_data = test_data
+        self.train_data = train_data // 10
+        self.test_data = test_data // 10
         self.temp_data = self.__get_data(file=self.__data_file)
 
     @staticmethod
@@ -56,10 +56,10 @@ class DataGenerator:
         return [random.randint(0, length - 1) for _ in range(amount)]
 
     def generate_train_data(self) -> None:
-        self.__generate_data(file=self.__train_file, iterations=30)
+        self.__generate_data(file=self.__train_file, iterations=self.train_data)
 
     def generate_test_data(self) -> None:
-        self.__generate_data(file=self.__test_file, iterations=10)
+        self.__generate_data(file=self.__test_file, iterations=self.test_data)
 
     @__decorator_represent_data_as_dataclass
     def get_train_data(self) -> list[RepresentedData]:

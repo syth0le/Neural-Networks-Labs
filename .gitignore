@@ -129,3 +129,5 @@ dmypy.json
 .pyre/
 
 trash
+train_data.json
+test_data.json

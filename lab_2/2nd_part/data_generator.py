@@ -1,7 +1,6 @@
 import dataclasses
 import json
 import random
-from multiprocessing import Pool
 from typing import Callable
 
 
@@ -23,7 +22,6 @@ class DataGenerator:
     @staticmethod
     def __get_data(file: str) -> dict:
         with open(file) as f:
-            # print(json.load(f))
             return json.load(f)["data"]
 
     @staticmethod
@@ -41,23 +39,14 @@ class DataGenerator:
     def __generate_data(self, file: str, iterations: int = 10) -> None:
         with open(file, 'r+') as wf:
             file_data = json.load(wf)
-            # is_bool = True
-            # with Pool(10) as pool:
-            #     print(pool)
-            # for _ in pool.map(func, B)
-            for _ in range(iterations):
+            for _ in range(iterations):  # TODO: create it using threads
                 for value in self.temp_data:
                     length = len(list(value.values())[0])
                     random_positions = self.__get_random_positions_to_change(length=length, amount=3)
-                    # print(random_positions)
                     for index in random_positions:
                         data_values = list(value.values())[0]
-                        # print(index, data_values[index])
                         data_values[index] = 1 if data_values[index] == 0 else 0
-                        # print(index, data_values[index])
                         value[list(value.keys())[0]] = data_values
-                    # print(value)
-                    # is_bool = False
                     file_data['data'].append(value)
                     wf.seek(0)
                     json.dump(file_data, wf, indent=4)

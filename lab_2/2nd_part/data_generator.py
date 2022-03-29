@@ -52,7 +52,7 @@ class DataGenerator:
                     json.dump(file_data, wf, indent=4)
 
     @staticmethod
-    def __get_random_positions_to_change(length: int = 35, amount: int = 3) -> list[int]:
+    def __get_random_positions_to_change(length: int = 35, amount: int = 1) -> list[int]:
         return [random.randint(0, length - 1) for _ in range(amount)]
 
     def generate_train_data(self) -> None:

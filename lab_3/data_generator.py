@@ -29,6 +29,8 @@ class DataGenerator:
         def wrapper(self):
             temp_data = []
             for item in func(self):
+                key = list(item.keys())[0]
+                value = list(item.values())[0]
                 temp_data.append(RepresentedData(number=int(key), data=value))
             return temp_data
 
